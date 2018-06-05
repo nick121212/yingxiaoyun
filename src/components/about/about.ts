@@ -18,7 +18,7 @@ export class AboutComponent extends Vue {
     }
     this.$nextTick(() => this.logger.info('about is ready!'));
 
-    this.logger.warn('sdfsf','鼎折覆餗');
+    this.logger.warn('cc','测测');
     
   }
 }
