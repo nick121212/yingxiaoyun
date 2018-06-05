@@ -35,3 +35,11 @@ npm run build
 # clean the production build
 npm run clean
 ```
+
+## 约定
+
+### 命名
+
+- 页面前缀 xyp-
+- 组件前缀 xy-
+- 指令前缀 xyd-focus

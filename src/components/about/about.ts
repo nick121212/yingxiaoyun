@@ -1,4 +1,4 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Emit, Vue } from 'vue-property-decorator';
 import { Logger } from '../../util/log';
 
 @Component({
@@ -17,5 +17,8 @@ export class AboutComponent extends Vue {
       this.logger = new Logger();
     }
     this.$nextTick(() => this.logger.info('about is ready!'));
+
+    this.logger.warn('sdfsf','鼎折覆餗');
+    
   }
 }

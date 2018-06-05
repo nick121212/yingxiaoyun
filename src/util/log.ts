@@ -9,8 +9,8 @@ export class Logger implements ILogger {
     console.info(msg);
   }
 
-  public warn(msg: any) {
-    console.warn(msg);
+  public warn(...msg: any[]) {
+    console.warn(...msg);
   }
 
   public error(msg: any) {

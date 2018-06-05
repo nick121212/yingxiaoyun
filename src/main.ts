@@ -3,6 +3,8 @@ import Vue from 'vue';
 import { createRouter } from './router';
 import { makeHot, reload } from './util/hot-reload';
 
+import 'tachyons';
+
 const navbarComponent = () => import('./components/navbar').then(({ NavbarComponent }) => NavbarComponent);
 // const navbarComponent = () => import(/* webpackChunkName: 'navbar' */'./components/navbar').then(({ NavbarComponent }) => NavbarComponent)
 

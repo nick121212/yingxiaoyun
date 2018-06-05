@@ -29,7 +29,7 @@ let config = {
     {
       test: /\.ts$/,
       exclude: /node_modules/,
-      loader: 'awesome-typescript-loader'
+      use: ['babel-loader','ts-loader']
     },
     {
       test: /\.html$/,

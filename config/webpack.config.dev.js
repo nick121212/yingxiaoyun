@@ -8,15 +8,19 @@ webpackConfig.module.rules = [...webpackConfig.module.rules,
   {
     test: /\.scss$/,
     use: [{
-      loader: 'style-loader'
-    },
-    {
-      loader: 'css-loader'
-    },
-    {
-      loader: 'sass-loader'
-    }
+        loader: 'style-loader'
+      },
+      {
+        loader: 'css-loader'
+      },
+      {
+        loader: 'sass-loader'
+      }
     ]
+  },
+  {
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader']
   },
   {
     test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
@@ -43,7 +47,14 @@ webpackConfig.devServer = {
     poll: 1000
   },
   contentBase: './src',
-  open: true
+  open: true,
+  proxy:{
+    "/search/*":{
+      target:"http://api.tvmaze.com/",
+      changeOrigin:true,
+      secure:false
+    }
+  }
 }
 
 module.exports = webpackConfig
