@@ -2,8 +2,6 @@ import { Component, Vue } from 'vue-property-decorator';
 import { Mixins } from '../../mixins/base';
 import { ProxyMixin } from '../../mixins/proxy';
 
-// import {fetc}
-
 interface UserResponse {
   id: string;
   name: string;
