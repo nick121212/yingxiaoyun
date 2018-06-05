@@ -1,3 +1,44 @@
-<div>
-  List
+<div v-loading="loading">
+
+  <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
+    <el-form-item>
+      <el-input v-model="searchInfo.searchText" placeholder="请输入影片名"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="loadItems()">搜索</el-button>
+    </el-form-item>
+  </el-form>
+
+  <el-table :data="items" style="width: 100%">
+    <el-table-column prop="score" label="SCORE" width="150">
+    </el-table-column>
+    <el-table-column width="150">
+      <template slot-scope="scope">
+        <img :src="scope.row.show.image.original" :alt="scope.row.show.name">
+      </template>
+    </el-table-column>
+
+    <el-table-column label="介绍">
+      <template slot-scope="{row}">
+        <div v-html="row.show.summary"></div>
+      </template>
+    </el-table-column>
+
+    <el-table-column label="影片详细信息">
+      <el-table-column label="片名" width="120">
+        <template slot-scope="{row}">
+          <a :href="row.show.url" v-html="row.show.name"></a>
+        </template>
+      </el-table-column>
+      <el-table-column prop="show.premiered" label="公演时间" width="120">
+      </el-table-column>
+      <el-table-column prop="show.rating.average" label="评分" width="120">
+      </el-table-column>
+      <el-table-column prop="show.status" label="状态" width="120">
+      </el-table-column>
+    </el-table-column>
+  </el-table>
+
+  <el-pagination class="tr mv3" background layout="total, prev, pager, jumper, next" :total="1000">
+  </el-pagination>
 </div>

@@ -48,8 +48,9 @@ webpackConfig.devServer = {
   open: true,
   quiet: false,
   proxy: {
-    "/search/*": {
+    "/tvmaze/*": {
       target: "http://api.tvmaze.com/",
+      pathRewrite: { '^/tvmaze': '' },
       changeOrigin: true,
       secure: false
     }

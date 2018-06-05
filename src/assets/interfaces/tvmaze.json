@@ -1,12 +1,12 @@
 {
   "key": "tvmaze",
   "title": "p-uc",
-  "engine": "normal",
+  "engine": "json",
   "mockDir": "/mocks/",
   "states": {
     "prod": "http://api.tvmaze.com",
     "test": "http://api.tvmaze.com",
-    "dev": "/search",
+    "dev": "/tvmaze",
     "stag": "http://api.tvmaze.com"
   },
   "state": "dev",

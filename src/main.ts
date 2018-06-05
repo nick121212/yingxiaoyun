@@ -1,3 +1,4 @@
+import {Loading} from "element-ui";
 import 'tachyons';
 import Vue from 'vue';
 
@@ -20,14 +21,12 @@ if (process.env.ENV === 'development' && module.hot) {
 }
 
 Vue.mixin(ProxyMixin);
+Vue.use(Loading);
 
 // tslint:disable-next-line:no-unused-expression
 new Vue({
   el: '#app-main',
   router: createRouter(),
-  beforeCreate: () => {
-    // return getInterfaceConfig.get("tvmaze.json").then(proxy.loadConfig.bind(proxy));
-  },
   components: {
     'navbar': navbarComponent
   }

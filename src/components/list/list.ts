@@ -1,4 +1,6 @@
+import { Button, Form, FormItem, Input, Pagination, Table, TableColumn } from "element-ui";
 import { Component, Vue } from 'vue-property-decorator';
+
 import { Mixins } from '../../mixins/base';
 import { ProxyMixin } from '../../mixins/proxy';
 
@@ -9,18 +11,22 @@ interface UserResponse {
 
 @Component({
   template: require('./list.html'),
-  // mixins:[proxyMixin],
   components: {
-
+    "el-table": Table,
+    "el-table-column": TableColumn,
+    "el-input": Input,
+    "el-button": Button,
+    "el-form": Form,
+    "el-form-item": FormItem,
+    "el-pagination": Pagination
   }
 })
 export class ListComponent extends Mixins(ProxyMixin) {
 
-  private items: UserResponse[] = [];
-
-  constructor() {
-    super();
-  }
+  private items: any[] = [];
+  private searchInfo: any = {
+    searchText: "batman"
+  };
 
   public mounted() {
     this.$nextTick(() => {
@@ -28,12 +34,16 @@ export class ListComponent extends Mixins(ProxyMixin) {
     });
   }
 
-  private async loadItems() {
+  public async loadItems(q: string = this.searchInfo.searchText) {
     this.execute("tvmaze", "search.shows", {
       params: {
-        q: "batman"
+        q
+      },
+      settings: {
+        timeout: 10000
       }
-    }).then(console.log).catch(console.error);
-
+    }).then((data: any) => {
+      this.items = data;
+    }).catch(console.error);
   }
 }

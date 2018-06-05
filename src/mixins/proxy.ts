@@ -14,6 +14,7 @@ import { getInterfaceConfig, proxy } from "../modelproxy";
 @Component({})
 export class ProxyMixin extends Vue {
   public proxy: ModelProxy = proxy;
+  public loading: boolean = false;
 
   constructor() {
     super();
@@ -36,7 +37,16 @@ export class ProxyMixin extends Vue {
     };
   }
 
-  public execute(ns: string, key: string, params: IExecute): Promise<any> {
-    return this.proxy.execute(ns, key, params);
+  public async execute(ns: string, key: string, params: IExecute): Promise<any> {
+    let data;
+
+    this.loading = true;
+    try {
+      data = await this.proxy.execute(ns, key, params);
+    } finally {
+      this.loading = false;
+    }
+
+    return data;
   }
 }
