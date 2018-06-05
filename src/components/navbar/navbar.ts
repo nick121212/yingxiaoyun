@@ -1,13 +1,22 @@
+import { Button } from "element-ui";
+import { CreateElement } from "vue";
 import { Component, Vue, Watch } from 'vue-property-decorator';
+
+import { Mixins } from '../../mixins/base';
+import { LoggerMixin } from '../../mixins/logger';
 import { Logger } from '../../util/log';
 import { Link } from './link';
+
+import { XyComfirmActionButton } from "../actionbutton/confirm/index";
 
 @Component({
   template: require('./navbar.html'),
   components: {
+    [Button.name]: Button,
+    [XyComfirmActionButton.cname]: XyComfirmActionButton
   }
 })
-export class NavbarComponent extends Vue {
+export class NavbarComponent extends Mixins(LoggerMixin) {
 
   public object: { default: string } = { default: 'Default object property!' };
   public links: Link[] = [
@@ -16,7 +25,25 @@ export class NavbarComponent extends Vue {
     new Link('List', '/list')
   ];
 
-  protected logger: Logger;
+  private btnGroupConfig = {
+    tagName: "el-button",
+    props: {
+      loading: true
+    },
+    attrs: {
+      type: "primary",
+      class: "red"
+    },
+    children: "加载中"
+  };
+  // ns="tvmaze" keyinns="singlesearch.shows" id="showGirl"
+  private proxyInfo = {
+    ns: "tvmaze",
+    key: "singlesearch.shows",
+    params: {
+      q: "batman"
+    }
+  };
 
   @Watch('$route.path')
   public pathChanged() {
@@ -24,9 +51,7 @@ export class NavbarComponent extends Vue {
   }
 
   public mounted() {
-    if (!this.logger) {
-      this.logger = new Logger();
-    }
     this.$nextTick(() => this.logger.info(this.object.default));
   }
+
 }

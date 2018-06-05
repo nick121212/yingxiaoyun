@@ -37,6 +37,13 @@
       <el-table-column prop="show.status" label="状态" width="120">
       </el-table-column>
     </el-table-column>
+
+    <el-table-column label="操作" width="120">
+      <template slot-scope="{row}">
+        <xyc-confirm-btn title="删除数据" content="确定要删除当前数据么？" :proxy-data="proxyInfo">
+        </xyc-confirm-btn>
+      </template>
+    </el-table-column>
   </el-table>
 
   <el-pagination class="tr mv3" background layout="total, prev, pager, jumper, next" :total="1000">

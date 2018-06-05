@@ -22,6 +22,7 @@ export class ProxyMixin extends Vue {
     const originExecute = proxy.execute.bind(proxy);
     const originLoadConfig = proxy.loadConfig.bind(proxy);
 
+    // 发起请求的时候，做一下判断，如果没有加载相对应的接口配置文件，则加载。
     proxy.execute = async (ns: string, key: string, options: IExecute, ...otherOptions: any[]): Promise<any> => {
       try {
         proxy.getNs(ns);

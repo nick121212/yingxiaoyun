@@ -5,6 +5,9 @@ import { LoggerMixin } from './../../mixins/logger';
 import { Mixins } from '../../mixins/base';
 import { ProxyMixin } from '../../mixins/proxy';
 
+import { XyComfirmActionButton } from "../actionbutton/confirm/index";
+
+
 interface UserResponse {
   id: string;
   name: string;
@@ -19,7 +22,8 @@ interface UserResponse {
     "el-button": Button,
     "el-form": Form,
     "el-form-item": FormItem,
-    "el-pagination": Pagination
+    "el-pagination": Pagination,
+    [XyComfirmActionButton.cname]: XyComfirmActionButton
   }
 })
 export class ListComponent extends Mixins(ProxyMixin, LoggerMixin) {
@@ -29,11 +33,18 @@ export class ListComponent extends Mixins(ProxyMixin, LoggerMixin) {
     searchText: "batman"
   };
 
+  private proxyInfo = {
+    ns: "tvmaze",
+    key: "singlesearch.shows",
+    params: {
+      q: "batman"
+    }
+  };
+
   public mounted() {
     this.$nextTick(() => {
       this.loadItems();
     });
-
   }
 
   public async loadItems(q: string = this.searchInfo.searchText) {

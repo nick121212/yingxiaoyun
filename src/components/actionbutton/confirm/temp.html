@@ -1,0 +1,10 @@
+<div>
+  <el-button size="small" type="error" :loading="loading" @click="setDialogVisible(true)">删除</el-button>
+  <el-dialog :title="title" :visible.sync="visible" width="30%" center :show-close="false">
+    <div v-html="content"></div>
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="setDialogVisible(false)" :disabled="loading" size="small">取 消</el-button>
+      <el-button type="primary" @click="onSubmit()" :loading="loading" size="small">确 定</el-button>
+    </span>
+  </el-dialog>
+</div>
