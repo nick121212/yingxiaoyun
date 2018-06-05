@@ -1,14 +1,14 @@
+import 'tachyons';
 import Vue from 'vue';
 
+import { ProxyMixin } from './mixins/proxy';
+// import { getInterfaceConfig, proxy } from './modelproxy';
 import { createRouter } from './router';
 import { makeHot, reload } from './util/hot-reload';
 
-import 'tachyons';
+import './sass/main.scss';
 
 const navbarComponent = () => import('./components/navbar').then(({ NavbarComponent }) => NavbarComponent);
-// const navbarComponent = () => import(/* webpackChunkName: 'navbar' */'./components/navbar').then(({ NavbarComponent }) => NavbarComponent)
-
-import './sass/main.scss';
 
 if (process.env.ENV === 'development' && module.hot) {
   const navbarModuleId = './components/navbar';
@@ -19,10 +19,15 @@ if (process.env.ENV === 'development' && module.hot) {
     module.hot.accept('./components/navbar', () => reload(navbarModuleId, (require('./components/navbar') as any).NavbarComponent)));
 }
 
+Vue.mixin(ProxyMixin);
+
 // tslint:disable-next-line:no-unused-expression
 new Vue({
   el: '#app-main',
   router: createRouter(),
+  beforeCreate: () => {
+    // return getInterfaceConfig.get("tvmaze.json").then(proxy.loadConfig.bind(proxy));
+  },
   components: {
     'navbar': navbarComponent
   }

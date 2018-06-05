@@ -18,7 +18,7 @@ webpackConfig.module.rules = [
   {
     test: /\.html$/,
     loader: 'raw-loader',
-    exclude: ['./src/index.html']
+    exclude: ['./public/index.html']
   },
   {
     test: /\.scss$/,

@@ -1,4 +1,6 @@
 import { Component, Vue } from 'vue-property-decorator';
+import { Mixins } from '../../mixins/base';
+import { ProxyMixin } from '../../mixins/proxy';
 
 // import {fetc}
 
@@ -14,7 +16,7 @@ interface UserResponse {
 
   }
 })
-export class ListComponent extends Vue {
+export class ListComponent extends Mixins(ProxyMixin) {
 
   private items: UserResponse[] = [];
 
@@ -29,20 +31,11 @@ export class ListComponent extends Vue {
   }
 
   private async loadItems() {
-    // const data = await this.proxy.executeAll({
-    //   "batman": this.proxy.execute.bind(proxy,"tvmaze", "search.shows", {
-    //     params: {
-    //       q: "batman"
-    //     }
-    //   }), 
-    //   "showgirl": this.proxy.execute.bind(proxy, "tvmaze", "search.shows", {
-    //     params: {
-    //       q: "showgirl"
-    //     }
-    //   })
-    // });
+    this.execute("tvmaze", "search.shows", {
+      params: {
+        q: "batman"
+      }
+    }).then(console.log).catch(console.error);
 
-    // console.log(data);
-   
   }
 }

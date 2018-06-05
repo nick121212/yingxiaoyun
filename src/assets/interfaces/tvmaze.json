@@ -1,0 +1,24 @@
+{
+  "key": "tvmaze",
+  "title": "p-uc",
+  "engine": "normal",
+  "mockDir": "/mocks/",
+  "states": {
+    "prod": "http://api.tvmaze.com",
+    "test": "http://api.tvmaze.com",
+    "dev": "/search",
+    "stag": "http://api.tvmaze.com"
+  },
+  "state": "dev",
+  "interfaces": [{
+    "key": "search.shows",
+    "title": "搜索所有的电影数据",
+    "method": "GET",
+    "path": "/search/shows"
+  }, {
+    "key": "singlesearch.shows",
+    "title": "搜索单步电影数据",
+    "method": "GET",
+    "path": "/singlesearch/shows"
+  }]
+}

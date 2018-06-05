@@ -95,7 +95,7 @@ webpackConfig.plugins = [...webpackConfig.plugins,
   }),
   new HtmlWebpackPlugin({
     inject: true,
-    template: helpers.root('/src/index.html'),
+    template: helpers.root('/public/index.html'),
     minify: {
       removeComments: true,
       collapseWhitespace: true,

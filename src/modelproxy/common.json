@@ -1,0 +1,15 @@
+{
+  "engine": "local",
+  "interfaces": [{
+    "key": "interfaces",
+    "method": "get",
+    "path": "/assets/interfaces",
+    "title": "调用本地的文件"
+  }],
+  "key": "json",
+  "state": "dev",
+  "states": {
+    "dev": ""
+  },
+  "title": "schema的获取接口"
+}
