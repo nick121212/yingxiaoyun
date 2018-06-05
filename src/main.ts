@@ -3,19 +3,16 @@ import 'tachyons';
 import Vue from 'vue';
 
 import { ProxyMixin } from './mixins/proxy';
-// import { getInterfaceConfig, proxy } from './modelproxy';
 import { createRouter } from './router';
 import { makeHot, reload } from './util/hot-reload';
 
-import './sass/main.scss';
-
+// 获取组件
 const navbarComponent = () => import('./components/navbar').then(({ NavbarComponent }) => NavbarComponent);
 
+// 设置热加载功能
 if (process.env.ENV === 'development' && module.hot) {
   const navbarModuleId = './components/navbar';
 
-  // first arguments for `module.hot.accept` and `require` methods have to be static strings
-  // see https://github.com/webpack/webpack/issues/5668
   makeHot(navbarModuleId, navbarComponent,
     module.hot.accept('./components/navbar', () => reload(navbarModuleId, (require('./components/navbar') as any).NavbarComponent)));
 }
