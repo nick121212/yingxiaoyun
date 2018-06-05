@@ -13,7 +13,6 @@ const loggerSpy = spy();
 class MockAboutComponent extends AboutComponent {
   constructor() {
     super();
-    this.logger = new MockLogger(loggerSpy);
   }
 }
 

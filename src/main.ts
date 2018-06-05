@@ -1,6 +1,7 @@
-import {Loading} from "element-ui";
+import { Loading } from "element-ui";
 import 'tachyons';
 import Vue from 'vue';
+import { LoggerMixin } from './mixins/logger';
 
 import { ProxyMixin } from './mixins/proxy';
 import { createRouter } from './router';
@@ -18,6 +19,7 @@ if (process.env.ENV === 'development' && module.hot) {
 }
 
 Vue.mixin(ProxyMixin);
+Vue.mixin(LoggerMixin);
 Vue.use(Loading);
 
 // tslint:disable-next-line:no-unused-expression

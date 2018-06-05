@@ -1,5 +1,6 @@
 import { Button, Form, FormItem, Input, Pagination, Table, TableColumn } from "element-ui";
 import { Component, Vue } from 'vue-property-decorator';
+import { LoggerMixin } from './../../mixins/logger';
 
 import { Mixins } from '../../mixins/base';
 import { ProxyMixin } from '../../mixins/proxy';
@@ -21,7 +22,7 @@ interface UserResponse {
     "el-pagination": Pagination
   }
 })
-export class ListComponent extends Mixins(ProxyMixin) {
+export class ListComponent extends Mixins(ProxyMixin, LoggerMixin) {
 
   private items: any[] = [];
   private searchInfo: any = {
@@ -32,6 +33,7 @@ export class ListComponent extends Mixins(ProxyMixin) {
     this.$nextTick(() => {
       this.loadItems();
     });
+
   }
 
   public async loadItems(q: string = this.searchInfo.searchText) {

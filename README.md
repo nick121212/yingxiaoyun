@@ -43,3 +43,8 @@ npm run clean
 - 页面前缀 xyp-
 - 组件前缀 xy-
 - 指令前缀 xyd-focus
+
+### Mixin
+
+- 全局注入的Mixin要用$$开头($$logger)
+- 局部注入的Mixin要用__开头(__logger)

@@ -2,7 +2,7 @@ import { ModelProxy } from "modelproxy";
 import { IExecute } from "modelproxy/out/models/execute";
 import { Component, Vue } from "vue-property-decorator";
 
-import { getInterfaceConfig, proxy } from "../modelproxy";
+import { getInterfaceConfig, proxy as proxyInstance } from "../modelproxy";
 
 /**
  * Mixin Proxy
@@ -13,18 +13,18 @@ import { getInterfaceConfig, proxy } from "../modelproxy";
  */
 @Component({})
 export class ProxyMixin extends Vue {
-  public proxy: ModelProxy = proxy;
+  public proxy: ModelProxy = proxyInstance;
   public loading: boolean = false;
 
   constructor() {
     super();
+    const { proxy } = this;
+    const originExecute = proxy.execute.bind(proxy);
+    const originLoadConfig = proxy.loadConfig.bind(proxy);
 
-    const originExecute = this.proxy.execute.bind(this.proxy);
-    const originLoadConfig = this.proxy.loadConfig.bind(this.proxy);
-
-    this.proxy.execute = async (ns: string, key: string, options: IExecute, ...otherOptions: any[]): Promise<any> => {
+    proxy.execute = async (ns: string, key: string, options: IExecute, ...otherOptions: any[]): Promise<any> => {
       try {
-        this.proxy.getNs(ns);
+        proxy.getNs(ns);
       } catch{
         await getInterfaceConfig.get(ns + ".json", {
           settings: {
